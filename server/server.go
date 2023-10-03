@@ -1,7 +1,8 @@
-package app
+package server
 
 import (
 	"fmt"
+	"infracloud-golang/app"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -9,10 +10,10 @@ import (
 
 type Server struct {
 	r  *gin.Engine
-	us *URLShortener
+	us *app.URLShortener
 }
 
-func NewServer(us *URLShortener) *Server {
+func NewServer(us *app.URLShortener) *Server {
 	server := &Server{
 		r:  gin.Default(),
 		us: us,

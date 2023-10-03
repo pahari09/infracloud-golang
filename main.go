@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"infracloud-golang/app"
 	"infracloud-golang/infrastructure"
+	"infracloud-golang/server"
 )
 
 const (
@@ -23,9 +24,9 @@ func main() {
 
 	us := app.NewURLShortener(store)
 
-	server := app.NewServer(us)
+	router := server.NewServer(us)
 
-	if err := server.Run(ServerAddr); err != nil {
-		fmt.Println(fmt.Sprintf("Failed to start server: %v", err))
+	if err := router.Run(ServerAddr); err != nil {
+		fmt.Println(fmt.Sprintf("Failed to start router: %v", err))
 	}
 }
