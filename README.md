@@ -15,11 +15,11 @@ This Application exposes following endpoints
 
 ## To use this application
 
-clone the code from github using git@github.com:pahari09/infracloud-golang.git
+1. clone the code from github using git@github.com:pahari09/infracloud-golang.git
 
-Open the code from infracloud-golang directory in VS code or any editor
+2. Open the code from infracloud-golang directory in VS code or any editor
 
-From the terminal Execute the following command --->
+3. From the terminal Execute the following command --->
 go mod tidy ---> this will download the required gin and redis go package for executing the code
 go run .\main.go
 
