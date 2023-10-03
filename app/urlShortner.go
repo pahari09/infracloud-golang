@@ -49,15 +49,16 @@ func (us *URLShortener) Redirect(shortURL string) (string, error) {
 	return us.store.Get("url:" + shortURL)
 }
 
-func (us *URLShortener) Metrics() ([]ScoredMember, error) {
+func (us *URLShortener) Metrics() ([]URLScoredMember, error) {
 	zs, err := us.store.ZRevRangeWithScores("domains", 0, 2)
 	if err != nil {
 		return nil, err
 	}
 
-	var members []ScoredMember
+	var members []URLScoredMember
 	for _, z := range zs {
-		members = append(members, ScoredMember{Score: z.Score, Member: fmt.Sprintf("%v", z.Member)})
+		member := URLScoredMember{Score: z.GetScore(), Member: fmt.Sprintf("%v", z.GetMember())}
+		members = append(members, member)
 	}
 	return members, nil
 }
@@ -91,4 +92,17 @@ func (us *URLShortener) ViewAll() (map[string]string, error) {
 
 func (us *URLShortener) DeleteAll() error {
 	return us.store.FlushDB()
+}
+
+type URLScoredMember struct {
+	Score  float64
+	Member string
+}
+
+func (usm *URLScoredMember) GetScore() float64 {
+	return usm.Score
+}
+
+func (usm *URLScoredMember) GetMember() string {
+	return usm.Member
 }

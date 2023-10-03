@@ -3,20 +3,31 @@ package infrastructure
 import (
 	"fmt"
 	"github.com/go-redis/redis"
-	"infracloud-golang/app"
 )
 
 type Storage interface {
 	Set(key string, value interface{}) error
 	Get(key string) (string, error)
 	ZIncrBy(key string, increment float64, member string) error
-	ZRevRangeWithScores(key string, start, stop int64) ([]app.ScoredMember, error)
+	ZRevRangeWithScores(key string, start, stop int64) ([]RedisScoredMember, error)
 	Scan(cursor uint64, match string, count int64) ([]string, uint64, error)
 	FlushDB() error
 }
 
 type RedisStorage struct {
 	client *redis.Client
+}
+type RedisScoredMember struct {
+	Score  float64
+	Member string
+}
+
+func (rsm *RedisScoredMember) GetScore() float64 {
+	return rsm.Score
+}
+
+func (rsm *RedisScoredMember) GetMember() string {
+	return rsm.Member
 }
 
 func NewRedisStorage(addr string, password string, db int) (*RedisStorage, error) {
@@ -45,15 +56,18 @@ func (rs *RedisStorage) ZIncrBy(key string, increment float64, member string) er
 	return rs.client.ZIncrBy(key, increment, member).Err()
 }
 
-func (rs *RedisStorage) ZRevRangeWithScores(key string, start, stop int64) ([]app.ScoredMember, error) {
+func (rs *RedisStorage) ZRevRangeWithScores(key string, start, stop int64) ([]RedisScoredMember, error) {
 	zs, err := rs.client.ZRevRangeWithScores(key, start, stop).Result()
 	if err != nil {
 		return nil, err
 	}
 
-	var members []app.ScoredMember
+	var members []RedisScoredMember
+
 	for _, z := range zs {
-		members = append(members, app.ScoredMember{Score: z.Score, Member: z.Member.(string)})
+		member := RedisScoredMember{Score: z.Score, Member: z.Member.(string)}
+		members = append(members, member)
+
 	}
 	return members, nil
 }
