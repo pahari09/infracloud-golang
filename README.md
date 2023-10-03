@@ -76,6 +76,6 @@ This will display all the addresses shortened till now in the following way.
     "url:cffd855a": "https://www.spotify.com",
     "url:fbc48530": "https://www.tesla.com",
     }
-6. DELETE for deleting all the records
+6. DELETE for deleting all the records (for testing purpose)
 Execute the following command in the CMD terminal
    curl -X DELETE http://localhost:8080/deleteAll
