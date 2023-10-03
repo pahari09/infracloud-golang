@@ -43,22 +43,21 @@ This will redirect you to the original website if it exists other wise page not 
    In the address bar type:- http://localhost:8080/metrics
 This will display the top domain in the following way
 
-   {
-   "top_domains": [
-   {
-   "Score": 7,
-   "Member": "www.samsung.com"
-   },
-   {
-   "Score": 5,
-   "Member": "www.shopify.com"
-   },
-   {
-   "Score": 4,
-   "Member": "www.tesla.com"
-   }
-   ]
-   }
+{
+	"top_domains": [{
+		"Score": 7,
+		"Member": "www.samsung.com"
+	},
+	{
+		"Score": 5,
+		"Member": "www.shopify.com"
+	},
+	{
+		"Score": 4,
+		"Member": "www.tesla.com"
+	}]
+}
+
 5.  GET request for /viewAll
     In the address bar type:- http://localhost:8080/viewAll
     
