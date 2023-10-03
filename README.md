@@ -13,7 +13,7 @@ This Application exposes following endpoints
 
 
 
-##To use this application
+## To use this application
 
 clone the code from github using git@github.com:pahari09/infracloud-golang.git
 
