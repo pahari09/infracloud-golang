@@ -33,13 +33,13 @@ P:\GoLand\urlShortner\infracloud-golang>curl -X POST -H "Content-Type: applicati
 From Powershell:
    Invoke-WebRequest -Uri http://localhost:8080/shorten -Method POST -Body '{"originalURL":"https://www.google.com"}' -ContentType "application/json"
    
-3. GET request for using short url:-
+2. GET request for using short url:-
 Open any browser
 In the address bar type:- http://localhost:8080/cdb4d88d
 You need to replace cdb4d88d with your own short URL generated during POST call.
 This will redirect you to the original website if it exists other wise page not found error will be displayed.
 
-4. GET request for metrics (Top 3 domains)
+3. GET request for metrics (Top 3 domains)
    In the address bar type:- http://localhost:8080/metrics
 This will display the top domain in the following way
 
@@ -58,7 +58,7 @@ This will display the top domain in the following way
 	}]
 }
 
-5.  GET request for /viewAll
+4.  GET request for /viewAll
     In the address bar type:- http://localhost:8080/viewAll
     
 This will display all the addresses shortened till now in the following way.
