@@ -20,20 +20,23 @@ go run .\main.go
 This will start the server for accepting the request
 Now we can use the URL shortening service
 
-1. POST request through curl command in 
+1. POST request through curl command
 From CMD terminal
 P:\GoLand\urlShortner\infracloud-golang>curl -X POST -H "Content-Type: application/json" -d "{\"originalURL\":\"https://www.microsoft.com\"}" http://localhost:8080/shorten
 {"short_url":"cdb4d88d"} 
 From Powershell:
    Invoke-WebRequest -Uri http://localhost:8080/shorten -Method POST -Body '{"originalURL":"https://www.google.com"}' -ContentType "application/json"
-2. GET request for using short url:-
+   
+3. GET request for using short url:-
 Open any browser
 In the address bar type:- http://localhost:8080/cdb4d88d
 You need to replace cdb4d88d with your own short URL generated during POST call.
 This will redirect you to the original website if it exists other wise page not found error will be displayed.
-3. GET request for metrics (Top 3 domains)
+
+4. GET request for metrics (Top 3 domains)
    In the address bar type:- http://localhost:8080/metrics
 This will display the top domain in the following way
+
    {
    "top_domains": [
    {
@@ -52,7 +55,9 @@ This will display the top domain in the following way
    }
 5.  GET request for /viewAll
     In the address bar type:- http://localhost:8080/viewAll
+    
 This will display all the addresses shortened till now in the following way.
+
     {
     "url:027b9d03": "https://www.instagram.com",
     "url:033d2b7b": "https://www.oracle.com",
@@ -76,6 +81,8 @@ This will display all the addresses shortened till now in the following way.
     "url:cffd855a": "https://www.spotify.com",
     "url:fbc48530": "https://www.tesla.com",
     }
-6. DELETE for deleting all the records (for testing purpose)
+7. DELETE for deleting all the records (for testing purpose)
+
 Execute the following command in the CMD terminal
+
    curl -X DELETE http://localhost:8080/deleteAll
