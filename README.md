@@ -8,9 +8,10 @@ GET("/viewAll", server.handleViewAll) ----> for viewing all urls generated till 
 DELETE("/deleteAll", server.handleDeleteAll) ----> for deleting test records
 
 
-To use this application
+##To use this application
 
 clone the code from github using git@github.com:pahari09/infracloud-golang.git
+
 Open the code from infracloud-golang directory in VS code or any editor
 
 From the terminal Execute the following command --->
